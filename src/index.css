@@ -65,6 +65,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -1259,12 +1261,13 @@ button {
   }
 
   .hero-content {
-    order: 1;
+    order: 0;
   }
 
   .hero-image {
-    order: 0;
-    margin-bottom: 20px;
+    order: 1;
+    margin-top: 40px;
+    margin-bottom: 0;
   }
 
   .hero h1 {
@@ -1308,6 +1311,22 @@ button {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 12px 0;
+  }
+  
+  .navbar-logo img {
+    height: 40px;
+  }
+  
+  .navbar-logo-text {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    padding-top: 80px;
+  }
+
   .mobile-menu-btn {
     display: flex;
   }
