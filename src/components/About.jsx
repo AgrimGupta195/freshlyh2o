@@ -30,7 +30,7 @@ function About() {
         <div className="about-image fade-in-left">
           <div className="about-image-card">
             <img
-              src="/images/label.jpg"
+              src="/images/250 ml.jpeg"
               alt="Freshly H2O product label showcasing quality certifications and brand details"
             />
           </div>
