@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import About from './components/About'
+import Products from './components/Products'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+
+function App() {
+  useEffect(() => {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right')
+    animatedElements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <About />
+      <Products />
+      <Contact />
+      <Footer />
+      <ScrollToTop />
+    </>
+  )
+}
+
+export default App
