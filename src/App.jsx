@@ -6,9 +6,15 @@ import Products from './components/Products'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import { initializeAnalytics, trackPageView } from './lib/analytics'
 
 function App() {
   useEffect(() => {
+    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
+
+    initializeAnalytics(measurementId)
+    trackPageView(measurementId)
+
     // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
