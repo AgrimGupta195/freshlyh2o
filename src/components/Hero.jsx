@@ -94,7 +94,7 @@ function Hero() {
             <div className="hero-image-ring"></div>
             <div className="hero-image-ring-2"></div>
             <img
-              src="/images/bottle-250ml.jpg"
+              src="/images/500ml.png"
               alt="Freshly H2O 250ml Premium Packaged Drinking Water Bottle"
             />
           </div>

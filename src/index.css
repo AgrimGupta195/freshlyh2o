@@ -84,7 +84,8 @@ a {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -291,8 +292,17 @@ button {
 }
 
 @keyframes heroPulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
 .hero-bubbles {
@@ -314,12 +324,15 @@ button {
     transform: translateY(100vh) scale(0);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 0.6;
   }
+
   100% {
     transform: translateY(-20vh) scale(1);
     opacity: 0;
@@ -344,6 +357,7 @@ button {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -373,8 +387,17 @@ button {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.5; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
 }
 
 .hero h1 {
@@ -484,7 +507,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  border-radius: 25%;
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
@@ -500,11 +523,19 @@ button {
   animation: gentleFloat 4s ease-in-out infinite;
   position: relative;
   z-index: 2;
+  border-radius: 5%;
 }
 
 @keyframes gentleFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .hero-image-ring {
@@ -532,8 +563,13 @@ button {
 }
 
 @keyframes spinSlow {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 /* ===== ABOUT SECTION ===== */
@@ -892,7 +928,7 @@ button {
   margin-bottom: 16px;
 }
 
-.contact-info > p {
+.contact-info>p {
   font-size: 1rem;
   color: var(--gray-500);
   line-height: 1.8;
@@ -1314,11 +1350,11 @@ button {
   .navbar {
     padding: 12px 0;
   }
-  
+
   .navbar-logo img {
     height: 40px;
   }
-  
+
   .navbar-logo-text {
     font-size: 1.2rem;
   }
@@ -1404,7 +1440,7 @@ button {
     font-size: 1.4rem;
   }
 
-  .contact-info > p {
+  .contact-info>p {
     font-size: 0.9rem;
     margin-bottom: 24px;
   }
