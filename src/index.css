@@ -314,9 +314,11 @@ button {
 
 .bubble {
   position: absolute;
+  top: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, rgba(186, 230, 253, 0.6), rgba(56, 189, 248, 0.15));
   animation: bubbleFloat linear infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes bubbleFloat {
@@ -757,9 +759,12 @@ button {
   padding: 40px 32px;
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: all var(--transition-slow);
   border: 1px solid rgba(226, 232, 240, 0.8);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .product-card::before {
@@ -792,19 +797,57 @@ button {
   position: relative;
 }
 
+.product-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.product-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(186, 230, 253, 0.6), rgba(56, 189, 248, 0.15));
+  opacity: 0;
+  transform: translateY(20px) scale(0.55);
+  box-shadow: 0 0 8px rgba(125, 211, 252, 0.12);
+  filter: blur(0.1px) saturate(1);
+  will-change: transform, opacity;
+}
+
+.product-card:hover .product-bubble {
+  animation-name: productBubbleRise;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+}
+
+.product-card > *:not(.product-bubbles) {
+  position: relative;
+  z-index: 1;
+}
+
 .product-badge {
   position: absolute;
-  top: -12px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, var(--sky-400), var(--sky-600));
   color: var(--white);
-  padding: 6px 16px;
+  padding: 4px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   z-index: 10;
+  transform: none;
+  white-space: nowrap;
+  width: max-content;
+  max-width: calc(100% - 32px);
 }
 
 .product-image {
@@ -825,6 +868,22 @@ button {
 
 .product-card:hover .product-image img {
   transform: scale(1.08) translateY(-5px);
+}
+
+@keyframes productBubbleRise {
+  0% {
+    transform: translateY(24px) scale(0.55);
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(calc(-1 * var(--bubble-rise, 280px))) scale(1.05);
+    opacity: 0;
+  }
 }
 
 .product-size {
@@ -854,6 +913,7 @@ button {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 28px;
+  flex: 1;
 }
 
 .product-feature-item {
@@ -891,6 +951,7 @@ button {
   box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
   width: 100%;
   justify-content: center;
+  margin-top: auto;
 }
 
 .product-cta:hover {

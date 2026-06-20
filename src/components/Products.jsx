@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 function Products() {
   const products = [
@@ -19,7 +19,6 @@ function Products() {
       image: '/images/500ml.png',
       features: ['Most Popular Size', 'Mineral Enriched', 'FSSAI Certified', 'Recyclable PET'],
       featured: true,
-      badge: 'Best Seller',
     },
     {
       id: 3,
@@ -31,6 +30,20 @@ function Products() {
       featured: false,
     },
   ]
+
+  const productBubbles = useMemo(() => {
+    return products.map((product) =>
+      Array.from({ length: product.featured ? 12 : 9 }, (_, index) => ({
+        id: `${product.id}-${index}`,
+        size: Math.random() * 24 + 12,
+        left: Math.random() * 100,
+        bottom: Math.random() * 18 - 6,
+        delay: Math.random() * 1.4,
+        duration: Math.random() * 2.6 + 3,
+        rise: Math.random() * 180 + 220,
+      }))
+    )
+  }, [])
 
   const handleContactClick = (e) => {
     e.preventDefault()
@@ -60,6 +73,24 @@ function Products() {
               key={product.id}
               style={{ transitionDelay: `${index * 0.15}s` }}
             >
+              <div className="product-bubbles" aria-hidden="true">
+                {productBubbles[index].map((bubble) => (
+                  <span
+                    key={bubble.id}
+                    className="product-bubble"
+                    style={{
+                      width: `${bubble.size}px`,
+                      height: `${bubble.size}px`,
+                      left: `${bubble.left}%`,
+                      bottom: `${bubble.bottom}px`,
+                      '--bubble-rise': `${bubble.rise}px`,
+                      animationDelay: `${bubble.delay}s`,
+                      animationDuration: `${bubble.duration}s`,
+                    }}
+                  />
+                ))}
+              </div>
+
               {product.badge && (
                 <div className="product-badge">{product.badge}</div>
               )}

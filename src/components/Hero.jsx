@@ -7,7 +7,7 @@ function Hero() {
       id: i,
       size: Math.random() * 40 + 10,
       left: Math.random() * 100,
-      delay: Math.random() * 10,
+      delay: -(Math.random() * 10),
       duration: Math.random() * 8 + 8,
     }))
   }, [])
@@ -36,6 +36,7 @@ function Hero() {
               left: `${bubble.left}%`,
               animationDelay: `${bubble.delay}s`,
               animationDuration: `${bubble.duration}s`,
+              animationFillMode: 'both',
             }}
           />
         ))}

@@ -54,14 +54,14 @@ function Contact() {
     {
       icon: '📞',
       label: 'Phone',
-      value: '+91 6387994591',
+      value: '+91 6387994591 ,+91 6307724240',
       href: 'tel:+916387994591',
     },
     {
       icon: '📧',
       label: 'Email',
-      value: 'ramkaushal1212@gmail.com',
-      href: 'mailto:ramkaushal1212@gmail.com',
+      value: 'support@freshlyindia.co',
+      href: 'mailto:support@freshlyindia.co',
     },
     {
       icon: '📍',
