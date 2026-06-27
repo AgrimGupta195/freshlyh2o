@@ -12,25 +12,55 @@ function App() {
   useEffect(() => {
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
 
-    initializeAnalytics(measurementId)
-    trackPageView(measurementId)
+    const scheduleIdle = (callback) => {
+      if ('requestIdleCallback' in window) {
+        return window.requestIdleCallback(callback, { timeout: 1500 })
+      }
+      return window.setTimeout(callback, 1)
+    }
 
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
+    const cancelIdle = (idleId) => {
+      if ('cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId)
+      } else {
+        window.clearTimeout(idleId)
+      }
+    }
 
-    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right')
-    animatedElements.forEach((el) => observer.observe(el))
+    const analyticsIdleId = scheduleIdle(() => {
+      initializeAnalytics(measurementId)
+      trackPageView(measurementId)
+    })
 
-    return () => observer.disconnect()
+    let observer = null
+    const observerIdleId = scheduleIdle(() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return
+      }
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      )
+
+      const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right')
+      animatedElements.forEach((el) => observer.observe(el))
+    })
+
+    return () => {
+      cancelIdle(analyticsIdleId)
+      cancelIdle(observerIdleId)
+      if (observer) {
+        observer.disconnect()
+      }
+    }
   }, [])
 
   return (

@@ -99,6 +99,9 @@ function Products() {
                 <img
                   src={product.image}
                   alt={`Freshly H2O ${product.size} packaged drinking water bottle`}
+                  loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
 

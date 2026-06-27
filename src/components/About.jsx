@@ -32,6 +32,9 @@ function About() {
             <img
               src="/images/250 ml.jpeg"
               alt="Freshly H2O product label showcasing quality certifications and brand details"
+              loading="lazy"
+              width="500"
+              height="500"
             />
           </div>
         </div>
