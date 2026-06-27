@@ -1639,8 +1639,8 @@ button {
     height: 50px;
   }
   
-  .hero-bubbles,
-  .product-bubbles,
+  .hero-bubbles .bubble:nth-child(n+4),
+  .product-bubbles .product-bubble:nth-child(n+4),
   .hero-image-ring,
   .hero-image-ring-2 {
     display: none !important;
