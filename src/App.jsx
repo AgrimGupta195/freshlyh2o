@@ -27,10 +27,10 @@ function App() {
       }
     }
 
-    const analyticsIdleId = scheduleIdle(() => {
+    const analyticsIdleId = window.setTimeout(() => {
       initializeAnalytics(measurementId)
       trackPageView(measurementId)
-    })
+    }, 4500)
 
     let observer = null
     const observerIdleId = scheduleIdle(() => {
@@ -55,7 +55,7 @@ function App() {
     })
 
     return () => {
-      cancelIdle(analyticsIdleId)
+      window.clearTimeout(analyticsIdleId)
       cancelIdle(observerIdleId)
       if (observer) {
         observer.disconnect()
